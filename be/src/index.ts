@@ -59,6 +59,16 @@ app.post("/template", async (req, res) => {
   return;
 });
 
+app.post("/chat", async (req, res) => {
+  const messages = req.body.messages;
+  const response = await openai.chat.completions.create({
+    model: "qwen/qwen3-30b-a3b:free",
+    messages,
+    temperature: 0,
+    system: getSystemPrompt(),
+  });
+});
+
 app.listen(3000);
 
 // async function main() {

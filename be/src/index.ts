@@ -6,6 +6,7 @@ import { BASE_PROMPT } from "./prompts";
 import { getSystemPrompt } from "./prompts";
 import { basePrompt as nodeBasePrompt } from "./defaults/node";
 import { basePrompt as reactBasePrompt } from "./defaults/react";
+
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPENAI_API_KEY,
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.post("/template", async (req, res) => {
   const prompt = req.body.prompt;
+
   const response = await openai.chat.completions.create({
     model: "qwen/qwen3-30b-a3b:free",
     max_tokens: 200,
@@ -33,6 +35,7 @@ app.post("/template", async (req, res) => {
     ],
     temperature: 0,
   });
+
   const answer = response.choices[0].message.content;
   if (answer == "react") {
     res.json({
@@ -61,11 +64,18 @@ app.post("/template", async (req, res) => {
 
 app.post("/chat", async (req, res) => {
   const messages = req.body.messages;
+  const systemMessage = getSystemPrompt();
+
   const response = await openai.chat.completions.create({
     model: "qwen/qwen3-30b-a3b:free",
-    messages,
-    temperature: 0,
-    system: getSystemPrompt(),
+    messages: [{ role: "system", content: systemMessage }, ...messages],
+    max_tokens: 8000,
+  });
+
+  console.log(response);
+  console.log(response.choices[0].message.content);
+  res.json({
+    response: response.choices[0].message.content,
   });
 });
 

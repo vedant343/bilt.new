@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
+import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Wand2 } from "lucide-react";
-
 export function Home() {
   const [prompt, setPrompt] = useState("");
   const navigate = useNavigate();
@@ -14,36 +14,39 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <Wand2 className="w-12 h-12 text-blue-400" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-100 mb-4">Bilt AI</h1>
-          <p className="text-lg text-gray-300">
-            Describe your dream website, and we'll help you build it step by
-            step
-          </p>
-        </div>
-
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 border rounded-lg border-white bg-black"
+          className="space-y-4 rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xl"
         >
-          <div className="bg-black rounded-lg shadow-lg p-6">
-            <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Describe the website you want to build..."
-              className="w-full h-32 p-3 bg-gray-900 text-gray-100 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none placeholder-gray-500"
-            />
+          <div className="p-6">
+            <div className="mb-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-5 h-5 text-purple-600" />
+                <h2 className="font-medium text-slate-700">
+                  Describe your vision
+                </h2>
+              </div>
+              <textarea
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Describe the website you want to build..."
+                className="w-full h-40 p-4 bg-slate-50 text-slate-800 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none placeholder-slate-400 transition-all"
+              />
+            </div>
             <button
               type="submit"
-              className="w-full mt-4 bg-blue-600 text-gray-100 py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              className="w-full py-6 bg-gradient-to-r from-purple-600 to-teal-500 hover:from-purple-700 hover:to-teal-600 text-white rounded-xl font-medium transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
             >
-              Generate Website Plan
+              <Sparkles className="w-5 h-5" />
+              <span>Generate Website Plan</span>
             </button>
+          </div>
+          <div className="bg-gradient-to-r from-purple-600/10 to-teal-500/10 p-4 text-center">
+            <p className="text-sm text-slate-600">
+              Powered by advanced AI to create beautiful, functional websites
+            </p>
           </div>
         </form>
       </div>

@@ -1,7 +1,8 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { Builder } from './pages/Builder';
+"use client";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Builder } from "./pages/Builder";
 
 function App() {
   return (

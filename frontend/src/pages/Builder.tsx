@@ -177,6 +177,7 @@ export function Builder() {
     );
 
     setLoading(true);
+
     const stepsResponse = await axios.post(`${BACKEND_URL}/chat`, {
       messages: [...prompts, prompt].map((content) => ({
         role: "user",
@@ -212,14 +213,14 @@ export function Builder() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col">
-      <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-100">Bilt</h1>
-        <p className="text-sm text-gray-400 mt-1">Prompt : {prompt}</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
+      <header className="bg-white border-b border-slate-200 px-6 py-4">
+        <h1 className="text-lg font-semibold text-slate-800">Bilt</h1>
+        <p className="text-md text-slate-600">{prompt}</p>
       </header>
 
       <div className="flex-1 overflow-hidden">
-        <div className="h-full grid grid-cols-4 gap-3 p-6">
+        <div className="h-full grid grid-cols-4 gap-1 p-2">
           <div className="col-span-1 space-y-6 overflow-auto">
             <div>
               <div className="max-h-[75vh] overflow-auto">
@@ -240,7 +241,7 @@ export function Builder() {
                         onChange={(e) => {
                           setPrompt(e.target.value);
                         }}
-                        className="p-2 w-full"
+                        className="p-2 w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                       ></textarea>
                       <button
                         onClick={async () => {
@@ -277,7 +278,7 @@ export function Builder() {
                             ),
                           ]);
                         }}
-                        className="bg-purple-400 px-4"
+                        className="bg-purple-400 px-4 text-white rounded-md"
                       >
                         Send
                       </button>
@@ -287,10 +288,16 @@ export function Builder() {
               </div>
             </div>
           </div>
-          <div className="col-span-1">
+          <div
+            className="col-span-1 bg-blue-500 rounded-lg shadow-lg h-full"
+            style={{ width: "300px" }}
+          >
             <FileExplorer files={files} onFileSelect={setSelectedFile} />
           </div>
-          <div className="col-span-2 bg-gray-900 rounded-lg shadow-lg p-4 h-[calc(100vh-4rem)]">
+          <div
+            className="col-span-2 bg-white rounded-lg shadow-lg p-2 h-[calc(100vh-4rem)]"
+            style={{ width: "700px" }}
+          >
             <TabView activeTab={activeTab} onTabChange={setActiveTab} />
             <div className="h-[calc(100%-4rem)]">
               {activeTab === "code" ? (

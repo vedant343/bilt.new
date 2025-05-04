@@ -24,7 +24,7 @@ export function CodeEditor({ file }: CodeEditorProps) {
       options={{
         readOnly: true,
         minimap: { enabled: false },
-        fontSize: 14,
+        fontSize: 16,
         wordWrap: 'on',
         scrollBeyondLastLine: false,
       }}

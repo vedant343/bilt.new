@@ -214,15 +214,15 @@ export function Builder() {
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col">
       <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-100">Website Builder</h1>
-        <p className="text-sm text-gray-400 mt-1">Prompt: {prompt}</p>
+        <h1 className="text-xl font-semibold text-gray-100">Bilt</h1>
+        <p className="text-sm text-gray-400 mt-1">Prompt : {prompt}</p>
       </header>
 
       <div className="flex-1 overflow-hidden">
-        <div className="h-full grid grid-cols-4 gap-6 p-6">
+        <div className="h-full grid grid-cols-4 gap-3 p-6">
           <div className="col-span-1 space-y-6 overflow-auto">
             <div>
-              <div className="max-h-[75vh] overflow-scroll">
+              <div className="max-h-[75vh] overflow-auto">
                 <StepsList
                   steps={steps}
                   currentStep={currentStep}
@@ -290,7 +290,7 @@ export function Builder() {
           <div className="col-span-1">
             <FileExplorer files={files} onFileSelect={setSelectedFile} />
           </div>
-          <div className="col-span-2 bg-gray-900 rounded-lg shadow-lg p-4 h-[calc(100vh-8rem)]">
+          <div className="col-span-2 bg-gray-900 rounded-lg shadow-lg p-4 h-[calc(100vh-4rem)]">
             <TabView activeTab={activeTab} onTabChange={setActiveTab} />
             <div className="h-[calc(100%-4rem)]">
               {activeTab === "code" ? (

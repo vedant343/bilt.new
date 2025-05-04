@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FolderTree, File, ChevronRight, ChevronDown } from 'lucide-react';
+import { FolderTree, File, ChevronRight, ChevronDown, FileIcon } from 'lucide-react';
 import { FileItem } from '../types';
 
 interface FileExplorerProps {
@@ -43,7 +43,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
         {item.type === 'folder' ? (
           <FolderTree className="w-4 h-4 text-blue-400" />
         ) : (
-          <File className="w-4 h-4 text-gray-400" />
+          <FileIcon className="w-4 h-4 text-gray-400" />
         )}
         <span className="text-gray-200">{item.name}</span>
       </div>
@@ -65,7 +65,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 
 export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
   return (
-    <div className="bg-gray-900 rounded-lg shadow-lg p-4 h-full overflow-auto">
+    <div className="bg-gray-900 rounded-lg shadow-lg p- h-full overflow-auto">
       <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-100">
         <FolderTree className="w-5 h-5" />
         File Explorer

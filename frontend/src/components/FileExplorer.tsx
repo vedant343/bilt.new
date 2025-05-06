@@ -71,10 +71,11 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 h-full overflow-auto border border-gray-200">
-      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-800">
+      <h2 className="text-lg font-semibold mb-2 flex items-center gap-2 text-gray-800">
         File Explorer
       </h2>
-      <div className="space-y-1">
+      <hr className="border-gray-300 mb-2" />
+      <div className="space-y-1 max-h-[75vh] overflow-auto">
         {files.map((file, index) => (
           <FileNode
             key={`${file.path}-${index}`}

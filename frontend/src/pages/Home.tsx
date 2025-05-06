@@ -14,8 +14,35 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
       <div className="max-w-2xl w-full">
+        <header className="pt-3 md:pt-5">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center mb-2">
+              <Sparkles className="w-6 h-6 text-purple-600 mr-2 animate-pulse" />
+              <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+                Bilt AI
+              </h1>
+            </div>
+
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-700 max-w-lg mx-auto leading-tight">
+              Create Your <span className="text-teal-600">Website Vision</span>{" "}
+              in Minutes
+            </h2>
+
+            <div className="mt-4 mb-4 flex justify-center space-x-2">
+              <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">
+                Fast
+              </span>
+              <span className="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-medium rounded-full">
+                Intuitive
+              </span>
+              <span className="px-3 py-1 bg-slate-100 text-slate-800 text-xs font-medium rounded-full">
+                Professional
+              </span>
+            </div>
+          </div>
+        </header>
         <form
           onSubmit={handleSubmit}
           className="space-y-4 rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xl"

@@ -11,13 +11,14 @@ interface StepsListProps {
 export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
   return (
     <div
-      className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg shadow-lg p-4 h-full overflow-auto border border-2"
+      className="bg-gradient-to-br rounded-lg shadow-lg p-4 h-full overflow-auto border border-2"
       style={{ width: "300px" }}
     >
-      <nav className="bg-gradient-to-br from-slate-50 to-slate-100 z-10 pb-4">
-        <h2 className="text-lg font-semibold  text-black">Build Steps</h2>
+      <nav className="bg-gradient-to-br from-slate-50 to-slate-100 pb-2">
+        <h2 className="text-lg font-semibold text-black">Build Steps</h2>
       </nav>
-      <div className="space-y-2 text-sm">
+      <hr className="border-gray-300 mb-2" />
+      <div className="space-y-1 text-sm overflow-auto">
         {steps.map((step) => (
           <div
             key={step.id}
@@ -28,7 +29,7 @@ export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
             }`}
             onClick={() => onStepClick(step.id)}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mb-2">
               {step.status === "completed" ? (
                 <CheckCircle className="w-5 h-5 text-green-500" />
               ) : step.status === "in-progress" ? (

@@ -218,8 +218,7 @@ export function Builder() {
         <h1 className="text-lg font-semibold text-slate-800">Bilt</h1>
         <p className="text-md text-slate-600">{prompt}</p>
       </header>
-
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-auto">
         <div className="h-full grid grid-cols-4 gap-1 p-2">
           <div className="col-span-1 space-y-6 overflow-auto">
             <div>

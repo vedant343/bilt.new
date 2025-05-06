@@ -10,7 +10,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { parseXml } from "../steps";
 import { useWebContainer } from "../hooks/useWebContainer";
-import { FileNode } from "@webcontainer/api";
+//import { FileNode } from "@webcontainer/api";
 import { Loader } from "../components/Loader";
 
 const MOCK_FILE_CONTENT = `// This is a sample file content
@@ -29,8 +29,10 @@ export function Builder() {
   const [llmMessages, setLlmMessages] = useState<
     { role: "user" | "assistant"; content: string }[]
   >([]);
+
   const [loading, setLoading] = useState(false);
   const [templateSet, setTemplateSet] = useState(false);
+
   const webcontainer = useWebContainer();
 
   const [currentStep, setCurrentStep] = useState(1);

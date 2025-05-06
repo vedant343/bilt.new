@@ -69,7 +69,7 @@ app.post("/chat", async (req, res) => {
   const response = await openai.chat.completions.create({
     model: "qwen/qwen3-30b-a3b:free",
     messages: [{ role: "system", content: systemMessage }, ...messages],
-    max_tokens: 8000,
+    max_tokens: 9999,
   });
 
   console.log(response);

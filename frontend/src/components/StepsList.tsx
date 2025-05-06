@@ -21,7 +21,7 @@ export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
       <div className="space-y-1 text-sm overflow-auto">
         {steps.map((step) => (
           <div
-            key={step.id}
+            key={step.id} // Ensure this is unique
             className={`p-1 rounded-lg cursor-pointer transition-colors ${
               currentStep === step.id
                 ? "bg-gray-300 border border-gray-700"

@@ -33,7 +33,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
   return (
     <div className="select-none">
       <div
-        className="flex text-sm font-semibold items-center gap-2 p-2 hover:bg-blue-600 hover:text-white rounded-md cursor-pointer transition-colors"
+        className="flex text-sm font-semibold items-center gap-2 p-2 hover:bg-gray-600 hover:text-white rounded-md cursor-pointer transition-colors"
         onClick={handleClick}
       >
         {item.type === "folder" && (

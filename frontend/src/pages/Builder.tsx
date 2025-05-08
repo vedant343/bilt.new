@@ -34,6 +34,7 @@ export function Builder() {
   const [templateSet, setTemplateSet] = useState(false);
 
   const webcontainer = useWebContainer();
+  const [isWebContainerReady, setIsWebContainerReady] = useState(false);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [activeTab, setActiveTab] = useState<"code" | "preview">("code");
@@ -42,6 +43,12 @@ export function Builder() {
   const [steps, setSteps] = useState<Step[]>([]);
 
   const [files, setFiles] = useState<FileItem[]>([]);
+
+  useEffect(() => {
+    if (webcontainer) {
+      setIsWebContainerReady(true);
+    }
+  }, [webcontainer]);
 
   useEffect(() => {
     let originalFiles = [...files];
@@ -217,8 +224,8 @@ export function Builder() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
       <header className="bg-white border-b border-slate-200 px-6 py-4">
-        <h1 className="text-lg font-semibold text-slate-800">Bilt</h1>
-        <p className="text-md text-slate-600">{prompt}</p>
+        <h1 className="text-lg font-semibold text-slate-800">Bilt AI</h1>
+        <p className="text-md text-slate-600">Prompt : {prompt}</p>
       </header>
       <div className="flex-1 overflow-auto">
         <div className="h-full grid grid-cols-4 gap-1 p-2">
@@ -303,8 +310,10 @@ export function Builder() {
             <div className="h-[calc(100%-4rem)]">
               {activeTab === "code" ? (
                 <CodeEditor file={selectedFile} />
-              ) : (
+              ) : isWebContainerReady ? (
                 <PreviewFrame webContainer={webcontainer} files={files} />
+              ) : (
+                <Loader />
               )}
             </div>
           </div>

@@ -14,13 +14,16 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+    <div
+      style={{ backgroundColor: "#e0f7fa" }}
+      className="min-h-screen flex items-center justify-center"
+    >
       <div className="max-w-2xl w-full">
         <header className="pt-3 md:pt-5">
           <div className="text-center">
             <div className="inline-flex items-center justify-center mb-2">
               <Sparkles className="w-6 h-6 text-purple-600 mr-2 animate-pulse" />
-              <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-purple-800 to-teal-500 bg-clip-text text-transparent">
                 Bilt AI
               </h1>
             </div>
@@ -31,13 +34,13 @@ export function Home() {
             </h2>
 
             <div className="mt-4 mb-4 flex justify-center space-x-2">
-              <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">
-                Fast
+              <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full border border-purple-300 shadow-md">
+                Easy
               </span>
-              <span className="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-medium rounded-full">
-                Intuitive
+              <span className="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-medium rounded-full border border-teal-300 shadow-md">
+                Efficient
               </span>
-              <span className="px-3 py-1 bg-slate-100 text-slate-800 text-xs font-medium rounded-full">
+              <span className="px-3 py-1 bg-slate-100 text-slate-800 text-xs font-medium rounded-full border border-slate-300 shadow-md">
                 Professional
               </span>
             </div>

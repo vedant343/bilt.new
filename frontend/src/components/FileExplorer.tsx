@@ -33,7 +33,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
   return (
     <div className="select-none">
       <div
-        className="flex text-sm font-semibold items-center gap-2 p-2 hover:bg-gray-300 rounded-md cursor-pointer transition-colors"
+        className="flex text-sm font-semibold items-center gap-2 p-2 hover:bg-gray-600 hover:text-white rounded-md cursor-pointer transition-colors"
         onClick={handleClick}
       >
         {item.type === "folder" && (
@@ -50,10 +50,10 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
         ) : (
           <FileIcon className="w-4 h-4 text-blue-600" />
         )}
-        <span className="text-gray-800">{item.name}</span>
+        <span className="text-slate-200">{item.name}</span>
       </div>
       {item.type === "folder" && isExpanded && item.children && (
-        <div>
+        <div className="pl-4">
           {item.children.map((child, index) => (
             <FileNode
               key={`${child.path}-${index}`}
@@ -70,11 +70,11 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 
 export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 h-full overflow-auto border border-gray-200">
-      <h2 className="text-lg font-semibold mb-2 flex items-center gap-2 text-gray-800">
+    <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg shadow-lg p-4 h-full overflow-auto border border-gray-700">
+      <h2 className="text-lg font-semibold mb-2 flex items-center gap-2 text-slate-200">
         File Explorer
       </h2>
-      <hr className="border-gray-300 mb-2" />
+      <hr className="border-gray-600 mb-2" />
       <div className="space-y-1 max-h-[75vh] overflow-auto">
         {files.map((file, index) => (
           <FileNode

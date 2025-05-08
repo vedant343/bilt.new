@@ -222,7 +222,7 @@ export function Builder() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 flex flex-col">
       <header className="bg-white border-b border-slate-200 px-6 py-4">
         <h1 className="text-lg font-semibold text-slate-800">Bilt AI</h1>
         <p className="text-md text-slate-600">Prompt : {prompt}</p>

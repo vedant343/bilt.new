@@ -227,8 +227,8 @@ export function Builder() {
         <p className="text-md text-slate-200 text-center">Prompt : {prompt}</p>
       </header>
       <div className="flex-1 overflow-auto">
-        <div className="h-full grid grid-cols-4 gap-1 p-2">
-          <div className="col-span-1 space-y-6 overflow-auto">
+        <div className="h-full grid grid-cols-10 gap-1 p-2">
+          <div className="col-span-2 space-y-6 overflow-auto">
             <div>
               <div className="max-h-[75vh] overflow-auto">
                 <StepsList
@@ -239,10 +239,10 @@ export function Builder() {
               </div>
             </div>
           </div>
-          <div className="col-span-1 bg-blue-500 rounded-lg shadow-lg h-full">
+          <div className="col-span-2 bg-blue-500 rounded-lg shadow-lg h-full">
             <FileExplorer files={files} onFileSelect={setSelectedFile} />
           </div>
-          <div className="col-span-2 bg-white rounded-lg shadow-lg p-2 h-[calc(100vh-4rem)]">
+          <div className="col-span-6 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg shadow-lg p-2 h-[calc(100vh-4rem)]">
             <TabView activeTab={activeTab} onTabChange={setActiveTab} />
             <div className="h-[calc(100%-4rem)]">
               {activeTab === "code" ? (

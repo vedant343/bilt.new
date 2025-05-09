@@ -15,7 +15,7 @@ export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
         <h2 className="text-lg font-semibold text-white">Build Steps</h2>
       </nav>
       <hr className="border-gray-600 mb-2" />
-      <div className="space-y-1 text-sm overflow-auto">
+      <div className="space-y-1 text-sm max-h-[75vh] overflow-auto">
         {steps.map((step) => (
           <div
             key={step.id}

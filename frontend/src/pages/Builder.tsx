@@ -228,9 +228,9 @@ export function Builder() {
       </header>
       <div className="flex-1 overflow-auto">
         <div className="h-full grid grid-cols-10 gap-1 p-2">
-          <div className="col-span-2 space-y-6 overflow-auto">
-            <div>
-              <div className="max-h-[75vh] overflow-auto">
+          <div className="col-span-2 space-y-6 h-full overflow-auto">
+            <div className="h-full">
+              <div className="h-full overflow-auto">
                 <StepsList
                   steps={steps}
                   currentStep={currentStep}

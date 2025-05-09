@@ -22,7 +22,7 @@ export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
             className={`p-2 rounded-lg cursor-pointer transition-colors ${
               currentStep === step.id
                 ? "bg-gray-600 border border-gray-400"
-                : "hover:bg-gray-500" // Darker gray on hover
+                : "hover:bg-gray-500"
             }`}
             onClick={() => onStepClick(step.id)}
           >

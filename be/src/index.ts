@@ -19,47 +19,57 @@ app.use(express.json());
 app.post("/template", async (req, res) => {
   const prompt = req.body.prompt;
 
-  const response = await openai.chat.completions.create({
-    model: "qwen/qwen3-30b-a3b:free",
-    max_tokens: 200,
-    messages: [
-      {
-        role: "system",
-        content:
-          "Return either node or react based on what do you think this project should be. Only return a single word either 'node' or 'react'. Do not return anything extra",
-      },
-      {
-        role: "user",
-        content: prompt,
-      },
-    ],
-    temperature: 0,
-  });
-
-  const answer = response.choices[0].message.content;
-  if (answer == "react") {
-    res.json({
-      prompts: [
-        BASE_PROMPT,
-        `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
+  try {
+    const response = await openai.chat.completions.create({
+      model: "qwen/qwen3-30b-a3b:free",
+      max_tokens: 200,
+      messages: [
+        {
+          role: "system",
+          content:
+            "Return either node or react based on what do you think this project should be. Only return a single word either 'node' or 'react'. Do not return anything extra",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
       ],
-      uiPrompts: [reactBasePrompt],
+      temperature: 0,
     });
-    return;
-  }
 
-  if (answer === "node") {
-    res.json({
-      prompts: [
-        `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
-      ],
-      uiPrompts: [nodeBasePrompt],
-    });
-    return;
-  }
+    // Check if response.choices is defined and has at least one choice
+    if (response.choices && response.choices.length > 0) {
+      const answer = response.choices[0].message.content;
+      if (answer === "react") {
+        res.json({
+          prompts: [
+            BASE_PROMPT,
+            `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
+          ],
+          uiPrompts: [reactBasePrompt],
+        });
+        return;
+      }
 
-  res.status(403).json({ message: "You cant access this" });
-  return;
+      if (answer === "node") {
+        res.json({
+          prompts: [
+            `Here is an artifact that contains all files of the project visible to you.\nConsider the contents of ALL files in the project.\n\n${reactBasePrompt}\n\nHere is a list of files that exist on the file system but are not being shown to you:\n\n  - .gitignore\n  - package-lock.json\n`,
+          ],
+          uiPrompts: [nodeBasePrompt],
+        });
+        return;
+      }
+    }
+
+    // Handle the case where no valid answer was returned
+    res.status(400).json({ message: "No valid response from OpenAI" });
+  } catch (error) {
+    console.error("Error during API call:", error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while processing the request" });
+  }
 });
 
 app.post("/chat", async (req, res) => {
@@ -100,3 +110,5 @@ app.listen(3000);
 // }
 
 // main();
+
+console.error("Error response:", error.response.data);

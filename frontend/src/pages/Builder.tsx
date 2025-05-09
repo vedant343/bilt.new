@@ -223,9 +223,8 @@ export function Builder() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 flex flex-col">
-      <header className="bg-white border-b border-slate-200 px-6 py-4">
-        <h1 className="text-lg font-semibold text-slate-800">Bilt AI</h1>
-        <p className="text-md text-slate-600">Prompt : {prompt}</p>
+      <header className="bg-gradient-to-br from-slate-950 to-slate-900 border-b border-slate-200 px-6 py-4">
+        <p className="text-md text-slate-200 text-center">Prompt : {prompt}</p>
       </header>
       <div className="flex-1 overflow-auto">
         <div className="h-full grid grid-cols-4 gap-1 p-2">
@@ -238,74 +237,12 @@ export function Builder() {
                   onStepClick={setCurrentStep}
                 />
               </div>
-              <div>
-                <div className="flex">
-                  <br />
-                  {(loading || !templateSet) && <Loader />}
-                  {!(loading || !templateSet) && (
-                    <div className="flex">
-                      <textarea
-                        value={userPrompt}
-                        onChange={(e) => {
-                          setPrompt(e.target.value);
-                        }}
-                        className="p-2 w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      ></textarea>
-                      <button
-                        onClick={async () => {
-                          const newMessage = {
-                            role: "user" as "user",
-                            content: userPrompt,
-                          };
-
-                          setLoading(true);
-                          const stepsResponse = await axios.post(
-                            `${BACKEND_URL}/chat`,
-                            {
-                              messages: [...llmMessages, newMessage],
-                            }
-                          );
-                          setLoading(false);
-
-                          setLlmMessages((x) => [...x, newMessage]);
-                          setLlmMessages((x) => [
-                            ...x,
-                            {
-                              role: "assistant",
-                              content: stepsResponse.data.response,
-                            },
-                          ]);
-
-                          setSteps((s) => [
-                            ...s,
-                            ...parseXml(stepsResponse.data.response).map(
-                              (x) => ({
-                                ...x,
-                                status: "pending" as "pending",
-                              })
-                            ),
-                          ]);
-                        }}
-                        className="bg-purple-400 px-4 text-white rounded-md"
-                      >
-                        Send
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
             </div>
           </div>
-          <div
-            className="col-span-1 bg-blue-500 rounded-lg shadow-lg h-full"
-            style={{ width: "300px" }}
-          >
+          <div className="col-span-1 bg-blue-500 rounded-lg shadow-lg h-full">
             <FileExplorer files={files} onFileSelect={setSelectedFile} />
           </div>
-          <div
-            className="col-span-2 bg-white rounded-lg shadow-lg p-2 h-[calc(100vh-4rem)]"
-            style={{ width: "700px" }}
-          >
+          <div className="col-span-2 bg-white rounded-lg shadow-lg p-2 h-[calc(100vh-4rem)]">
             <TabView activeTab={activeTab} onTabChange={setActiveTab} />
             <div className="h-[calc(100%-4rem)]">
               {activeTab === "code" ? (
@@ -314,6 +251,62 @@ export function Builder() {
                 <PreviewFrame webContainer={webcontainer} files={files} />
               ) : (
                 <Loader />
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center items-center p-4">
+          <div className="flex flex-col w-full max-w-md">
+            <div className="flex">
+              <br />
+              {(loading || !templateSet) && <Loader />}
+              {!(loading || !templateSet) && (
+                <div className="flex">
+                  <textarea
+                    value={userPrompt}
+                    onChange={(e) => {
+                      setPrompt(e.target.value);
+                    }}
+                    className="p-2 w-full text-slate-800 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-home-color"
+                  ></textarea>
+                  <button
+                    onClick={async () => {
+                      const newMessage = {
+                        role: "user" as "user",
+                        content: userPrompt,
+                      };
+
+                      setLoading(true);
+                      const stepsResponse = await axios.post(
+                        `${BACKEND_URL}/chat`,
+                        {
+                          messages: [...llmMessages, newMessage],
+                        }
+                      );
+                      setLoading(false);
+
+                      setLlmMessages((x) => [...x, newMessage]);
+                      setLlmMessages((x) => [
+                        ...x,
+                        {
+                          role: "assistant",
+                          content: stepsResponse.data.response,
+                        },
+                      ]);
+
+                      setSteps((s) => [
+                        ...s,
+                        ...parseXml(stepsResponse.data.response).map((x) => ({
+                          ...x,
+                          status: "pending" as "pending",
+                        })),
+                      ]);
+                    }}
+                    className="bg-purple-400 px-4 text-white rounded-md"
+                  >
+                    Send
+                  </button>
+                </div>
               )}
             </div>
           </div>

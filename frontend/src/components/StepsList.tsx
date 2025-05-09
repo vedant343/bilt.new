@@ -10,11 +10,8 @@ interface StepsListProps {
 
 export function StepsList({ steps, currentStep, onStepClick }: StepsListProps) {
   return (
-    <div
-      className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg shadow-lg p-4 h-full overflow-auto border border-gray-700"
-      style={{ width: "300px" }}
-    >
-      <nav className="bg-gradient-to-br from-slate-700 to-slate-800 pb-2">
+    <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg shadow-lg p-4 h-full overflow-auto border border-gray-700">
+      <nav className="pb-2">
         <h2 className="text-lg font-semibold text-white">Build Steps</h2>
       </nav>
       <hr className="border-gray-600 mb-2" />

@@ -65,7 +65,7 @@ app.post("/template", async (req, res) => {
     // Handle the case where no valid answer was returned
     res.status(400).json({ message: "No valid response from OpenAI" });
   } catch (error) {
-    console.error("Error during API call:", error);
+    //console.error("Error during API call:", error);
     res
       .status(500)
       .json({ message: "An error occurred while processing the request" });
@@ -110,5 +110,3 @@ app.listen(3000);
 // }
 
 // main();
-
-console.error("Error response:", error.response.data);
